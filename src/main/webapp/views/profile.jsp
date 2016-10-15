@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>home page</h1>
-	
-	<c:out value="yang"></c:out>
+
+	<h1>Your profile</h1>
+	UserName:<c:out value="${spitter.username }"/> <br/>
+	FirstName:<c:out value="${spitter.firstName }"/> <br/>
+	LastName:<c:out value="${spitter.lastName }"/> <br/>
+	Email:<c:out value="${spitter.email }"/> <br/>
 </body>
 </html>

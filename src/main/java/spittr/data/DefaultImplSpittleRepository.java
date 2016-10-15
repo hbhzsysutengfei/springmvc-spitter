@@ -24,4 +24,8 @@ public class DefaultImplSpittleRepository implements SpittleRepository {
 		return spittles;
 	}
 
+	public Object findOne(long spittleId) {
+		return new Spittle(spittleId,"hello, "+ spittleId+" spittle", new Date());
+	}
+
 }

@@ -6,4 +6,6 @@ import spittr.model.Spittle;
 
 public interface SpittleRepository {
 	public List<Spittle> findSpitters(long maxValue, int count);
+
+	public Object findOne(long spittleId);
 }
