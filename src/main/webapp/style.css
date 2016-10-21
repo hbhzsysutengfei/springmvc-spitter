@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+label.error{
+	color: red;
+}
+
+input.error{
+	background-color: #ffcccc;
+}
+
+div.error{
+	background-color: #ffcccc;
+	border: 2px solid red;
+}
