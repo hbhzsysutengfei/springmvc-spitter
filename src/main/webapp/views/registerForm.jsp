@@ -1,26 +1,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="false" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" "/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
 	<h1>Registration Form</h1>
 	
 	<sf:form method="POST" commandName="spitter">
-		FirstName:<sf:input path="firstName" /> <br/>
-		LastName:<sf:input path="lastName"/> <br/>
-		Email:<sf:input path="email" /><br/>
-		UserName:<sf:input path="userName"/><br/>
-		Password:<sf:password path="password"/><br/>
+		<sf:errors path="*" element="div" cssClass="error" />
 		
-		<input type="password" value="Register">
+		<sf:label path="firstName" cssErrorClass="error">FirstName:</sf:label>
+			<sf:input path="firstName" /> <br/>
+		<sf:label path="lastName" cssErrorClass="error">LastName:</sf:label>
+			<sf:input path="lastName"/> <br/>
+		<sf:label path="email" cssErrorClass="error">Email:</sf:label>
+			<sf:input path="email" /><br/>
+		<sf:label path="username" cssErrorClass="error">UserName:</sf:label>
+			<sf:input path="username"/><br/>
+		<sf:label path="password" cssErrorClass="error">Password:</sf:label>
+			<sf:password path="password"/><br/>
+		
+		<input type="submit" value="Register">
 	
 	</sf:form>
+	
+	
 	
 	<!-- 
 	

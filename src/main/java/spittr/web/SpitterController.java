@@ -16,32 +16,33 @@ import spittr.model.Spitter;
 @Controller
 @RequestMapping("/spitter")
 public class SpitterController {
-	
+
 	@Autowired
 	private SpitterRepository spitterRespository;
-	
-	@RequestMapping(method=RequestMethod.GET,value="/register")
-	public String showRegistrationForm(Model model){
+
+	@RequestMapping(method = RequestMethod.GET, value = "/register")
+	public String showRegistrationForm(Model model) {
 		model.addAttribute("spitter", new Spitter());
 		return "registerForm";
 	}
-	
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String processRegistration(@Valid Spitter spitter, Errors errors/*, Model model*/){
-		if(errors.hasErrors()){
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String processRegistration(@Valid Spitter spitter,
+			Errors errors/* , Model model */) {
+		if (errors.hasErrors()) {
 			return "registerForm";
 		}
-		
+
 		spitterRespository.save(spitter);
-		
-		//model.addAttribute("spitter",spitter);
-		return "redirect:/spitter/"+spitter.getUsername();
+
+		// model.addAttribute("spitter",spitter);
+		return "redirect:/spitter/" + spitter.getUsername();
 	}
-	
-	@RequestMapping(value="/{username}",method=RequestMethod.GET)
-	public String showSpitterProfile(@PathVariable(value="username") String username, Model model ){
+
+	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+	public String showSpitterProfile(@PathVariable(value = "username") String username, Model model) {
 		Spitter spitter = spitterRespository.findbyUserName(username);
-		model.addAttribute("spitter",spitter);		
+		model.addAttribute("spitter", spitter);
 		return "profile";
 	}
 

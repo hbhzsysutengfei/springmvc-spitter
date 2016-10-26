@@ -8,43 +8,42 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
 
 public class Spitter {
-	
+
 	private Long id;
-	
+
 	@NotNull
-	@Size(min=5,max=20)
+	@Size(min = 5, max = 20, message = "{username.size}")
 	private String username;
-	
+
 	@NotNull
-	@Size(min=5,max=25)
+	@Size(min = 5, max = 25, message = "{password.size}")
 	private String password;
-	
+
 	@NotNull
-	@Size(min=2,max=20)
+	@Size(min = 2, max = 20, message = "{firstname.size}")
 	private String firstName;
-	
+
 	@NotNull
-	@Size(min=2,max=20)
+	@Size(min = 2, max = 20, message = "{lastname.size}")
 	private String lastName;
-	
+
 	@NotNull
-	@Email
+	@Email(message = "{email.valid}")
 	private String email;
-	
-	
-	public Spitter(){
-		
+
+	public Spitter() {
+
 	}
-	
-	public Spitter(String username , String password, String firstName, String lastName, String email){
-		this(null,username,password,firstName, lastName, email);
+
+	public Spitter(String username, String password, String firstName, String lastName, String email) {
+		this(null, username, password, firstName, lastName, email);
 	}
-	
-	public Spitter(Long id,String username , String password, String firstName, String lastName,String email){
+
+	public Spitter(Long id, String username, String password, String firstName, String lastName, String email) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.firstName = firstName; 
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 	}
@@ -99,14 +98,12 @@ public class Spitter {
 
 	@Override
 	public boolean equals(Object that) {
-		return EqualsBuilder.reflectionEquals(this, that, "username","password","firstName","lastName","email");
+		return EqualsBuilder.reflectionEquals(this, that, "username", "password", "firstName", "lastName", "email");
 	}
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this, "username","password","firstName","lastName","email");
+		return HashCodeBuilder.reflectionHashCode(this, "username", "password", "firstName", "lastName", "email");
 	}
-	
-	
 
 }

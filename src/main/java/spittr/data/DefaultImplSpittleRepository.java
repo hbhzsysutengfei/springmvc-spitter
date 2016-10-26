@@ -10,22 +10,22 @@ import spittr.model.Spittle;
 
 @Component
 public class DefaultImplSpittleRepository implements SpittleRepository {
-	
-	public DefaultImplSpittleRepository(){}
+
+	public DefaultImplSpittleRepository() {
+	}
 
 	public List<Spittle> findSpitters(long maxValue, int count) {
 		// TODO Auto-generated method stub
 		List<Spittle> spittles = new ArrayList<Spittle>();
-		for(int i=0 ;i < count; i++){
-			spittles.add(new Spittle("Spittle"+i, new Date()));
+		for (int i = 0; i < count; i++) {
+			spittles.add(new Spittle("Spittle" + i, new Date()));
 		}
-		
-		
+
 		return spittles;
 	}
 
 	public Object findOne(long spittleId) {
-		return new Spittle(spittleId,"hello, "+ spittleId+" spittle", new Date());
+		return new Spittle(spittleId, "hello, " + spittleId + " spittle", new Date());
 	}
 
 }

@@ -4,8 +4,8 @@ import spittr.model.Spitter;
 
 public interface SpitterRepository {
 
-	void save(Spitter spitter);
+	public void save(Spitter spitter);
 
-	Spitter findbyUserName(String username);
+	public Spitter findbyUserName(String username);
 
 }

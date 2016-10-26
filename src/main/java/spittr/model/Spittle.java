@@ -11,16 +11,16 @@ public class Spittle {
 	private final Date time;
 	private Double latitude;
 	private Double longitude;
-	
-	
-	public Spittle(String message, Date time){
-		this(null,message, time, null, null);
+
+	public Spittle(String message, Date time) {
+		this(null, message, time, null, null);
 	}
-	
-	public Spittle(Long id, String message, Date time){
-		this(id, message,time,null,null);
+
+	public Spittle(Long id, String message, Date time) {
+		this(id, message, time, null, null);
 	}
-	public Spittle(Long id,String message, Date time, Double latitude, Double longitude){
+
+	public Spittle(Long id, String message, Date time, Double latitude, Double longitude) {
 		this.id = id;
 		this.message = message;
 		this.time = time;
@@ -59,12 +59,12 @@ public class Spittle {
 	@Override
 	public boolean equals(Object that) {
 		// TODO Auto-generated method stub
-		return EqualsBuilder.reflectionEquals(this, that, "id","time");
+		return EqualsBuilder.reflectionEquals(this, that, "id", "time");
 	}
 
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
-		return HashCodeBuilder.reflectionHashCode(this, "id","time");
+		return HashCodeBuilder.reflectionHashCode(this, "id", "time");
 	}
 }
