@@ -11,9 +11,11 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @EnableWebMvc
@@ -26,28 +28,28 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	// }
 	
 	
-//	@Bean
-//	public ViewResolver themleafViewResolver(SpringTemplateEngine templateEngine){
-//		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-//		viewResolver.setTemplateEngine(templateEngine);
-//		return viewResolver;
-//	}
-//	
-//	@Bean
-//	public TemplateEngine templateEngine(TemplateResolver templateResolver ){
-//		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//		templateEngine.setTemplateResolver(templateResolver);
-//		return templateEngine;
-//	}
-//	
-//	@Bean
-//	public TemplateResolver templateResolver(){
-//		TemplateResolver templateResolver = new ServletContextTemplateResolver(); 
-//		templateResolver.setPrefix("/templates/");
-//		templateResolver.setSuffix(".html");
-//		templateResolver.setTemplateMode("HTML5");
-//		return templateResolver;
-//	}
+	@Bean
+	public ViewResolver viewResolver(SpringTemplateEngine templateEngine){
+		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+		viewResolver.setTemplateEngine(templateEngine);
+		return viewResolver;
+	}
+		
+	@Bean
+	public SpringTemplateEngine templateEngine(TemplateResolver templateResolver ){
+		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+		templateEngine.setTemplateResolver(templateResolver);
+		return templateEngine;
+	}
+	
+	@Bean
+	public TemplateResolver templateResolver(){
+		TemplateResolver templateResolver = new ServletContextTemplateResolver(); 
+		templateResolver.setPrefix("/views/");
+		templateResolver.setSuffix(".html");
+		templateResolver.setTemplateMode("HTML5");
+		return templateResolver;
+	}
 	
 	
 	@Bean
@@ -57,24 +59,24 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	
 
-	@Bean
-	public ViewResolver internalResourceViewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("/views/");
-		resolver.setSuffix(".jsp");
-		resolver.setExposeContextBeansAsAttributes(true);
-		resolver.setOrder(2);
-		return resolver;
-	}
+//	@Bean
+//	public ViewResolver internalResourceViewResolver() {
+//		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+//		resolver.setPrefix("/views/");
+//		resolver.setSuffix(".jsp");
+//		resolver.setExposeContextBeansAsAttributes(true);
+//		resolver.setOrder(2);
+//		return resolver;
+//	}
 
-	@Bean
-	public ViewResolver viewResolver() {
-		TilesViewResolver resolver = new TilesViewResolver();
-
-		resolver.setExposeContextBeansAsAttributes(true);
-		resolver.setOrder(1);
-		return resolver;
-	}
+//	@Bean
+//	public ViewResolver viewResolver() {
+//		TilesViewResolver resolver = new TilesViewResolver();
+//
+//		resolver.setExposeContextBeansAsAttributes(true);
+//		resolver.setOrder(1);
+//		return resolver;
+//	}
 
 	@Bean
 	public MessageSource messageSource() {

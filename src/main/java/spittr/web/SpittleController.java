@@ -1,5 +1,7 @@
 package spittr.web;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spittr.data.SpittleRepository;
+import spittr.exception.DuplicateSpittleException;
+import spittr.exception.SpittleNotFoundException;
+import spittr.model.Spittle;
+import spittr.model.SpittleForm;
 
 @Controller
 @RequestMapping("/spittles")
@@ -39,8 +45,21 @@ public class SpittleController {
 
 	@RequestMapping(value = "{spittleId}", method = RequestMethod.GET)
 	public String showSpittle(@PathVariable(value = "spittleId") long spittleId, Model model) {
-		model.addAttribute("spittle", spittleRepository.findOne(spittleId));
+		Spittle spittle =  spittleRepository.findOne(spittleId);
+		if(spittle == null){
+			throw new SpittleNotFoundException();
+		}
+		model.addAttribute("spittle",spittle );
 		return "spittle";
 	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public String saveSpittle(SpittleForm spittleForm, Model model) throws DuplicateSpittleException{
+		spittleRepository.save(new Spittle(null, spittleForm.getMessage(),new Date(), spittleForm.getLongitude(), spittleForm.getLongitude()));
+		return "redirect:/spittles";		
+	}
+	
+	
+	
 
 }

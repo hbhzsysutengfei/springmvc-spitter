@@ -1,13 +1,9 @@
 package spittr.config;
 
-import javax.servlet.Registration.Dynamic;
-import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.web.WebApplicationInitializer;
-
-import spittr.servlet.MyServlet;
 
 public class MyServletInitializer implements WebApplicationInitializer {
 
